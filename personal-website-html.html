@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorenzo Sbordone - Mission de Vie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #0f2557;
+            --accent-color: #3b82f6;
+            --light-color: #f1efe4;
+            --beige-color: #e6e1d3;
+            --dark-color: #212529;
+            --section-padding: 4rem 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--light-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(14, 40, 90, 0.8), rgba(11, 30, 69, 0.9)), url('https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .hero-text {
+            flex: 1;
+            text-align: left;
+            padding-right: 2rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: right;
+            position: relative;
+        }
+        
+        /* Profile Image Styles */
+        .profile-container {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 5px solid white;
+        }
+
+        .slideshow {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slideshow img.active {
+            opacity: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: var(--section-padding);
+        }
+
+        .section-beige {
+            background-color: var(--beige-color);
+        }
+
+        .section-white {
+            background-color: white;
+        }
+
+        .section-light {
+            background-color: var(--light-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+
+        /* Quote Block */
+        .quote-block {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-left: 5px solid var(--accent-color);
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-block::before {
+            content: "\201C";
+            font-size: 4rem;
+            color: var(--accent-color);
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            opacity: 0.3;
+        }
+
+        .quote-block p {
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-block .author {
+            text-align: right;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* Card Styles */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-tag.social-impact {
+            background-color: #28a745;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+            color: #6c757d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-logo p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-top: 2rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: white;
+                box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                padding: 2rem;
+                z-index: 1000;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .profile-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 90%;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Lorenzo <span>Sbordone</span></a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">À Propos</a></li>
+                    <li><a href="#parcours">Mon Parcours</a></li>
+                    <li><a href="#projets">Mes Projets</a></li>
+                    <li><a href="#plan-b">Plan B</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Préserver la Vie dans l'Univers</h1>
+                <p>« L'espérance en des temps meilleurs a toujours eu de l'influence sur le travail des bons esprits. »</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn">Découvrir ma Mission</a>
+                    <a href="#plan-b" class="btn btn-outline">Plan B - Plan Bunker</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-container">
+                    <div class="slideshow">
+                        <img src="/api/placeholder/600/600" alt="Lorenzo Sbordone" class="active">
+                        <img src="/api/placeholder/600/600" alt="Lorenzo Sbordone">
+                        <img src="/api/placeholder/600/600" alt="Lorenzo Sbordone">
+                        <img src="/api/placeholder/600/600" alt="Lorenzo Sbordone">
+                        <img src="/api/placeholder/600/600" alt="Lorenzo Sbordone">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section-beige">
+        <div class="container">
+            <div class="section-title">
+                <h2>À Propos</h2>
+            </div>
+            <div class="quote-block">
+                <p>« Cette espérance en des temps meilleurs, sans laquelle un désir sérieux de faire prospérer le bien général n'aurait jamais échauffé le coeur de l'homme, a toujours eu de l'influence sur le travail des bons esprits. »</p>
+                <p class="author">E. Kant, Théorie et Pratique, 1793</p>
+            </div>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p>Je suis Lorenzo Sbordone, entrepreneur neurodivergent (TSA et TDAH) avec une mission : préserver la vie sous toutes ses formes et orienter l'humanité vers un avenir plus conscient.</p>
+                <p>Mon hyperactivité mentale me pousse à chercher constamment des solutions aux grands défis de notre époque. Les pensées positives ont un pouvoir très puissant sur l'être humain, et je suis convaincu que lorsqu'on le décide, nous pouvons être totalement maîtres de nos vies.</p>
+                <a href="#parcours" class="btn" style="margin-top: 20px;">Découvrir mon parcours</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="parcours" class="section section-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mon Parcours</h2>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="text-align: center; margin-bottom: 30px;">Ma vie d'entrepreneur m'a permis de faire d'innombrables erreurs qui me servent énormément aujourd'hui.</p>
+                
+                <div style="background-color: var(--light-color); padding: 30px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: var(--primary-color);">Scolarité et Début de Vie Active</h3>
+                    <p>Scolarité : comment dire ? Chaotique ? Inutile ? Incompris ? Je n'ai pu aller jusqu'au bac. Début vie active : 17 ans.</p>
+                </div>
+                
+                <div style="background-color: var(--light-color); padding: 30px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: var(--primary-color);">2018 - Ma Première Entreprise</h3>
+                    <p>Développement de ma 1ère entreprise à 21 ans après un an accéléré à la Toulouse Business School : Conciergerie privée immobilière. Nombre d'erreurs réalisées : plusieurs milliers.</p>
+                </div>
+                
+                <div style="background-color: var(--light-color); padding: 30px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: var(--primary-color);">Pendant la Covid - Les Logements Solidaires</h3>
+                    <p>Création d'un mouvement citoyen pour loger le personnel soignant gratuitement dans des Airbnb (obligeant Airbnb à proposer la même chose au niveau national). Intérêt : gestion d'une équipe de bénévoles en hyper croissance, création d'une communauté en ligne de plusieurs dizaines de milliers d'adhérents en 3 semaines.</p>
+                </div>
+                
+                <div style="background-color: var(--light-color); padding: 30px; border-radius: 10px;">
+                    <h3 style="color: var(--primary-color);">2024 - Réorientation et Nouveaux Projets</h3>
+                    <p>Arrêt de mon activité. Développement de 8 projets dont 3 à impact social.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projets" class="section section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Projets d'Entreprise</h2>
+            </div>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px auto;">Je développe actuellement huit projets distincts, combinant rentabilité économique et impact social positif.</p>
+            
+            <div class="card-container">
+                <!-- Projets économiques -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="/api/placeholder/400/300" alt="PUB PIZZA">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Projet Économique</span>
+                        <h3>PUB PIZZA</h3>
+                        <p>Transformer les boîtes à pizza en supports publicitaires pour des annonceurs locaux, tout en fournissant des boîtes gratuites aux pizzerias.</p>
+                        <a href="#" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-image">
+                        <img src="/api/placeholder/400/300" alt="My Second House">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Projet Économique</span>
+                        <h3>My Second House</h3>
+                        <p>Une application qui centralise toutes les informations essentielles pour les propriétaires de résidences secondaires.</p>
+                        <a href="#" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <!-- Projets d'impact social -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="/api/placeholder/400/300" alt="PHENIX PLAST">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag social-impact">Impact Social</span>
+                        <h3>PHENIX PLAST</h3>
+                        <p>Usines franchisables dans les pays émergents pour recycler les plastiques locaux et les transformer en objets du quotidien.</p>
+                        <a href="#" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn">Voir tous mes projets</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plan B Section -->
+    <section id="plan-b" class="section section-beige">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mon Projet Actuel : Plan B - Plan Bunker</h2>
+            </div>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 40px auto;">
+                <p>Dans un monde où l'incertitude semble être la seule constante, que faisons-nous concrètement pour protéger ce qu'il y a de plus précieux dans notre univers - la vie elle-même ?</p>
+            </div>
+            
+            <div style="background-color: white; padding: 40px; border-radius: 10px; margin-bottom: 30px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Au-delà d'un simple abri : une philosophie de vie</h3>
+                <p>Plan B - Plan Bunker n'est pas simplement une réponse à la peur. C'est une affirmation de notre responsabilité collective envers la préservation de la vie et du bien-être de tous les êtres.</p>
+                <p style="margin-top: 15px;">Les espaces que nous concevons ne sont pas de simples refuges souterrains, mais des centres où le bien-être physique, mental et spirituel est au cœur de la conception.</p>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="#" class="btn">Découvrir Plan B - Plan Bunker</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; font-style: italic; margin-top: 20px;">
+                <p>"Pour protéger ce qui compte vraiment."</p>
+                <p style="margin-top: 10px;"><a href="http://www.plan-b-plan-bunker.fr" target="_blank">www.plan-b-plan-bunker.fr</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact</h2>
+            </div>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p>Vous souhaitez en savoir plus sur mes projets ou participer à l'initiative Plan B - Plan Bunker ?</p>
+                <p style="margin-top: 15px; margin-bottom: 30px;">N'hésitez pas à me contacter.</p>
+                <p><strong>Email :</strong> Lorenzo@charles-osborn.com</p>
+                <div style="margin-top: 40px;">
+                    <a href="mailto:Lorenzo@charles-osborn.com" class="btn">M'envoyer un message</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Lorenzo Sbordone</h3>
+                    <p>Ma mission est de préserver la vie sous toutes ses formes et d'orienter l'humanité vers un avenir plus conscient, durable et épanouissant.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#about">À Propos</a></li>
+                        <li><a href="#parcours">Mon Parcours</a></li>
+                        <li><a href="#projets">Mes Projets</a></li>
+                        <li><a href="#plan-b">Plan B</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Projets Phares</h4>
+                    <ul>
+                        <li><a href="#">Plan B - Plan Bunker</a></li>
+                        <li><a href="#">PHENIX PLAST</a></li>
+                        <li><a href="#">PUB PIZZA</a></li>
+                        <li><a href="#">My Second House</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lorenzo Sbordone. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to Top Button
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        // Slideshow functionality
+        const images = document.querySelectorAll('.slideshow img');
+        let currentImageIndex = 0;
+        
+        function changeImage() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+        
+        setInterval(changeImage, 3000);
+    </script>
+</body>
+</html>

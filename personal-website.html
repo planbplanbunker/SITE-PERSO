@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorenzo Osborn - Mission de Vie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #0f2557;
+            --accent-color: #3b82f6;
+            --light-color: #f1efe4;
+            --beige-color: #e6e1d3;
+            --dark-color: #212529;
+            --section-padding: 5rem 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--light-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(14, 40, 90, 0.8), rgba(11, 30, 69, 0.9)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .hero-text {
+            flex: 1;
+            text-align: left;
+            padding-right: 2rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: var(--section-padding);
+            background-color: var(--beige-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 50px;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: -15px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: var(--section-padding);
+            background-color: var(--light-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') center/cover no-repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .mission-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .mission-points {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-point {
+            flex: 1;
+            min-width: 250px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mission-point:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-point i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .mission-point h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Knowledge Section */
+        .knowledge {
+            padding: var(--section-padding);
+            background-color: white;
+        }
+
+        .knowledge-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .category {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .category h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .category ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .category ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .category ul li::before {
+            content: "\f054";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: var(--section-padding);
+            background-color: #f9f9f9;
+        }
+
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .filter-btn.active::after, .filter-btn:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag.social-impact {
+            background-color: #28a745;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .project-card p {
+            margin-bottom: 1rem;
+            color: #6c757d;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: var(--section-padding);
+            background-color: white;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .contact-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            margin-top: 3rem;
+        }
+
+        .social-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(44, 119, 68, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-logo p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .contact-wrapper {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: white;
+                box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                padding: 2rem;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 90%;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .filter-btn {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Lorenzo <span>Osborn</span></a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">À Propos</a></li>
+                    <li><a href="#journey">Mon Parcours</a></li>
+                    <li><a href="#mission">La Mission</a></li>
+                    <li><a href="#knowledge">Savoir</a></li>
+                    <li><a href="#spirituality">Spiritualité</a></li>
+                    <li><a href="#projects">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Préserver la Vie dans l'Univers</h1>
+                <p>Ma mission est de protéger ce qu'il y a de plus précieux et d'orienter l'humanité vers un avenir meilleur et plus conscient.</p>
+                <div class="hero-buttons">
+                    <a href="#mission" class="btn">Découvrir la Mission</a>
+                    <a href="#projects" class="btn btn-outline">Voir les Projets</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/600/600" alt="Lorenzo Osborn">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>À Propos</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/600/600" alt="Lorenzo Osborn">
+                </div>
+                <div class="about-text">
+                    <h3>Lorenzo Osborn</h3>
+                    <p>Entrepreneur, visionnaire et neurodivergent (TSA et TDAH), je porte un regard unique sur le monde et son potentiel. Mon hyperactivité mentale me pousse à chercher constamment des solutions aux grands défis de notre époque.</p>
+                    <p>Depuis plus de 10 ans, j'ai consacré mon énergie à comprendre les systèmes qui régissent notre monde et à élaborer des stratégies pour les améliorer. Je crois fermement que nous avons toutes les connaissances nécessaires pour être la meilleure version de nous-mêmes et pour préserver ce qui est le plus précieux : la vie.</p>
+                    <p>Mon objectif est de créer et développer des entreprises qui non seulement génèrent des revenus, mais qui ont également un impact social positif significatif. Je suis convaincu que l'argent est un bon serviteur mais un mauvais maître, et qu'il peut être utilisé comme un puissant outil de changement.</p>
+                    <p><strong>Certains doivent se demander pourquoi je fais ça ? Pourquoi j'ai également affiché ma vie sur le net.</strong></p>
+                    <p>"Lorsqu'on a rien à se reprocher on ne craint rien"</p>
+                    <p>Vous avez des questions sur moi, j'ai des réponses voilà tout. La transparence est essentielle.</p>
+                    <a href="#journey" class="btn">Découvrir mon parcours</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="about" style="background-color: white;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mon Parcours</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2014</div>
+                    <div class="timeline-content">
+                        <h3>La Prise de Conscience</h3>
+                        <p>À l'âge de 20 ans, j'ai commencé à observer le monde avec un regard différent, constatant un mal-être général croissant et une déconnexion progressive entre l'humain et son environnement.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2015-2018</div>
+                    <div class="timeline-content">
+                        <h3>Exploration et Recherche</h3>
+                        <p>Période d'étude intense sur les systèmes qui régissent notre monde, les mécanismes économiques, sociaux et politiques qui influencent nos vies quotidiennes.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2019-2020</div>
+                    <div class="timeline-content">
+                        <h3>Développement des Solutions</h3>
+                        <p>Début de la conception des neuf projets d'entreprise qui serviront de piliers à ma mission, alliant rentabilité économique et impact social.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021-Présent</div>
+                    <div class="timeline-content">
+                        <h3>Mise en Action</h3>
+                        <p>Lancement des premiers projets et construction des fondations pour un changement systémique à grande échelle, visant à réorienter l'humanité vers un chemin plus conscient et harmonieux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission">
+        <div class="container mission-container">
+            <div class="section-title">
+                <h2>La Mission</h2>
+            </div>
+            <div class="mission-content">
+                <p class="mission-text">Notre mission est de préserver la vie sous toutes ses formes et d'orienter l'humanité vers un avenir plus conscient, durable et épanouissant. Nous voulons centraliser et diffuser les connaissances essentielles pour le bien-être humain, la protection de notre planète et l'évolution positive de notre espèce.</p>
+                <div class="mission-points">
+                    <div class="mission-point">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Bien-être Intérieur</h3>
+                        <p>Développer et maximiser le bien-être de chaque être vivant en appliquant les connaissances que nous possédons déjà sur la santé physique, mentale et spirituelle.</p>
+                    </div>
+                    <div class="mission-point">
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>Penser au Futur</h3>
+                        <p>Adopter une vision à long terme qui transcende notre existence individuelle, pour construire un monde meilleur pour les générations futures sur des centaines et des milliers d'années.</p>
+                    </div>
+                    <div class="mission-point">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Évolution et Croissance</h3>
+                        <p>Favoriser l'évolution positive de l'humanité en harmonie avec toutes les formes de vie, pour assurer notre survie collective et la préservation de ce qui est précieux et rare dans l'univers : la vie.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Knowledge Section -->
+    <section id="knowledge" class="knowledge">
+        <div class="container">
+            <div class="section-title">
+                <h2>Le Savoir Centralisé</h2>
+            </div>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">Notre objectif est de centraliser l'ensemble des données scientifiques irréfutables sur le bien-être humain, la spiritualité, les capacités du corps humain et tout ce qui est bénéfique pour les êtres vivants et notre planète.</p>
+            <div class="knowledge-categories">
+                <div class="category">
+                    <h3><i class="fas fa-brain"></i> Bien-être Humain</h3>
+                    <ul>
+                        <li>Nutrition optimale et alimentation consciente</li>
+                        <li>Activité physique et santé corporelle</li>
+                        <li>Techniques de respiration et cohérence cardiaque</li>
+                        <li>Gestion du stress et équilibre mental</li>
+                        <li>Sommeil réparateur et récupération</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3><i class="fas fa-om"></i> Spiritualité & Conscience</h3>
+                    <ul>
+                        <li>Méditation et pleine conscience</li>
+                        <li>Développement personnel et croissance</li>
+                        <li>Connexion à soi et aux autres</li>
+                        <li>Pouvoir de la pensée positive</li>
+                        <li>Exploration de la conscience humaine</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3><i class="fas fa-leaf"></i> Écologie & Planète</h3>
+                    <ul>
+                        <li>Solutions durables et régénératives</li>
+                        <li>Préservation des écosystèmes</li>
+                        <li>Biodiversité et respect du vivant</li>
+                        <li>Économie circulaire et zéro déchet</li>
+                        <li>Autonomie et résilience locale</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3><i class="fas fa-hand-holding-usd"></i> Économie Consciente</h3>
+                    <ul>
+                        <li>Entrepreneuriat à impact positif</li>
+                        <li>Économie du bien commun</li>
+                        <li>Investissement éthique et durable</li>
+                        <li>Modèles économiques alternatifs</li>
+                        <li>Finance au service de l'humanité</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Spirituality Section -->
+    <section id="spirituality" class="about" style="background-color: var(--beige-color);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Spiritualité & Potentiel Humain</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>L'Éveil des Potentiels Cachés</h3>
+                    <p>L'être humain ne connaît qu'une infime partie de ses capacités réelles. Notre potentiel reste largement inexploré et inexploité. À travers les anciennes traditions spirituelles et les découvertes scientifiques récentes, nous pouvons entrevoir l'étendue de ce qui est possible.</p>
+                    
+                    <h3>Médecine Traditionnelle Chinoise</h3>
+                    <p>Vieille de plus de 5000 ans, la médecine traditionnelle chinoise nous enseigne l'équilibre des énergies, la circulation du Qi et l'harmonisation du corps avec son environnement. Ces pratiques millénaires nous rappellent que la santé est un état d'équilibre global, et non simplement l'absence de maladie.</p>
+                    
+                    <h3>Le Pouvoir de la Pensée</h3>
+                    <p>Notre esprit possède une capacité transformatrice puissante, tant sur notre propre corps que sur notre réalité. Les recherches en neuroplasticité démontrent comment nos pensées façonnent littéralement notre cerveau. La pensée positive n'est pas simplement un concept new-age, mais une force tangible capable de modifier notre biologie.</p>
+                    
+                    <h3>Interconnexion et Conscience Collective</h3>
+                    <p>Nous ne sommes pas des entités isolées, mais des êtres profondément connectés à tous les niveaux. La physique quantique suggère des connexions au-delà de l'espace et du temps, rejoignant ce que les traditions spirituelles enseignent depuis des millénaires : nous sommes tous reliés dans une vaste toile de conscience.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/600" alt="Spiritualité et Méditation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Projets</h2>
+            </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="economic">Projets Économiques</button>
+                <button class="filter-btn" data-filter="impact">Impact Social</button>
+            </div>
+            <div class="projects-grid">
+                <!-- Projet 1 -->
+                <div class="project-card" data-category="economic">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="PUB PIZZA">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Projet Économique</span>
+                        <h3>PUB PIZZA</h3>
+                        <p>Transformer les boîtes à pizza en supports publicitaires pour des annonceurs locaux, tout en fournissant des boîtes gratuites aux pizzerias.</p>
+                        <a href="#" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Projet 2 -->
+                <div class="project-card" data-category="economic">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="My Second House">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Projet Économique</span>
+                        <h3>My Second House</h3>
+                        <p>Une application qui centralise toutes les informations essentielles pour les propriétaires de résidences secondaires, simplifiant la gestion des biens à distance.</p>
+                        <a href="#" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Projet 3 -->
+                <div class="project-card" data-category="economic">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="Tout pour Louer">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Projet Économique</span>
+                        <h3>Tout pour Louer</h3>
+                        <p>Une marketplace où les conciergeries et agences immobilières peuvent acheter tout le nécessaire pour l'aménagement et l'entretien de leurs logements en location.</p>
+                        <a href="#" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Projet 4 -->
+                <div class="project-card" data-category="economic">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="JEUX DE CARTES">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Projet Économique</span>
+                        <h3>JEUX DE CARTES</h3>
+                        <p>Un jeu de cartes conçu pour les voyageurs en quête d'aventure et de spontanéité, qui laisse le hasard organiser leur voyage.</p>
+                        <a href="#" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Projet 5 -->
+                <div class="project-card" data-category="impact">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="ILY et Toi">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag social-impact">Impact Social</span>
+                        <h3>ILY et Toi</h3>
+                        <p>Application innovante qui allie introspection et productivité, basée sur les cycles lunaires et les bilans annuels, avec des outils immersifs IA pour structurer le développement personnel.</p>
+                        <a href="#" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Projet 6 -->
+                <div class="project-card" data-category="economic">
+                    <div class="project-image">
+                        <img src="/api/placeholder/400/300" alt="Pub Pare
